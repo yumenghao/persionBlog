@@ -9,8 +9,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
-import javax.transaction.Transactional;
+import java.util.List;
 
 @Service
 public class TypeServiceImpl implements TypeService {
@@ -18,7 +19,7 @@ public class TypeServiceImpl implements TypeService {
     @Autowired
     private TypeRepository typeRepository;
 
-    @Transactional
+    @org.springframework.transaction.annotation.Transactional
     @Override
     public Type saveType(Type type) {
         return typeRepository.save(type);
@@ -57,5 +58,10 @@ public class TypeServiceImpl implements TypeService {
     @Override
     public void deleteType(Long id) {
         typeRepository.deleteById(id);
+    }
+
+    @Override
+    public List<Type> listType() {
+        return typeRepository.findAll();
     }
 }

@@ -13,6 +13,8 @@ public class Blog {
     @GeneratedValue
     private Long id;
     private String title;
+    @Basic(fetch = FetchType.LAZY)
+    @Lob
     private String content;
     private String firstPicture;
     private String flag;
@@ -25,7 +27,7 @@ public class Blog {
     @Temporal(TemporalType.TIMESTAMP)
     private Date createTime;
     @Temporal(TemporalType.TIMESTAMP)
-    private Date updataTime;
+    private Date updateTime;
 
     @ManyToOne
     private Type type;
@@ -38,6 +40,17 @@ public class Blog {
 
     @OneToMany(mappedBy = "blog")
     private List<Comment> comments = new ArrayList<>();
+
+    @Transient
+    private String tagIds;
+
+    public String getTagIds() {
+        return tagIds;
+    }
+
+    public void setTagIds(String tagIds) {
+        this.tagIds = tagIds;
+    }
 
     public Blog() {
     }
@@ -146,12 +159,12 @@ public class Blog {
         this.createTime = createTime;
     }
 
-    public Date getUpdataTime() {
-        return updataTime;
+    public Date getUpdateTime() {
+        return updateTime;
     }
 
-    public void setUpdataTime(Date updataTime) {
-        this.updataTime = updataTime;
+    public void setUpdateTime(Date updateTime) {
+        this.updateTime = updateTime;
     }
 
     public Type getType() {
@@ -193,7 +206,7 @@ public class Blog {
                 ", published=" + published +
                 ", recommend=" + recommend +
                 ", createTime=" + createTime +
-                ", updataTime=" + updataTime +
+                ", updateTime=" + updateTime +
                 '}';
     }
 }
