@@ -37,20 +37,21 @@ public class IndexController {
     }
 
 
-//    @PostMapping("/search")
-//    public String search(@PageableDefault(size = 8, sort = {"updateTime"}, direction = Sort.Direction.DESC) Pageable pageable,
-//                         @RequestParam String query, Model model) {
-//        model.addAttribute("page", blogService.listBlog("%"+query+"%", pageable));
-//        model.addAttribute("query", query);
-//        return "search";
-//    }
-//
-//    @GetMapping("/blog/{id}")
-//    public String blog(@PathVariable Long id,Model model) {
-//        model.addAttribute("blog", blogService.getAndConvert(id));
-//        return "blog";
-//    }
-//
+    @PostMapping("/search")
+    public String search(@PageableDefault(size = 8, sort = {"updateTime"}, direction = Sort.Direction.DESC) Pageable pageable,
+                         @RequestParam String query, Model model) {
+        model.addAttribute("page", blogService.listBlog("%"+query+"%", pageable));
+        model.addAttribute("query", query);
+        return "search";
+    }
+
+    @GetMapping("/blog/{id}")
+    public String blog(@PathVariable Long id,Model model) {
+        model.addAttribute("blog", blogService.getBlog(id));
+        model.addAttribute("blog", blogService.getAndConvert(id));
+        return "blog";
+    }
+
 //    @GetMapping("/footer/newblog")
 //    public String newblogs(Model model) {
 //        model.addAttribute("newblogs", blogService.listRecommendBlogTop(3));

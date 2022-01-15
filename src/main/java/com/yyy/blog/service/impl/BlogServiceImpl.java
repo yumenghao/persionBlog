@@ -5,6 +5,7 @@ import com.yyy.blog.mapper.BlogRepository;
 import com.yyy.blog.model.Blog;
 import com.yyy.blog.model.Type;
 import com.yyy.blog.service.BlogService;
+import com.yyy.blog.util.MarkdownUtils;
 import com.yyy.blog.util.MyBeanUtils;
 import com.yyy.blog.vo.BlogQuery;
 import org.springframework.beans.BeanUtils;
@@ -96,5 +97,25 @@ public class BlogServiceImpl implements BlogService {
         Sort sort = Sort.by(Sort.Direction.DESC,"updateTime");
         Pageable pageable = PageRequest.of(0, size, sort);
         return blogRepository.findTop(pageable);
+    }
+
+    @Override
+    public Page<Blog> listBlog(String query, Pageable pageable) {
+        return blogRepository.findByQuery(query,pageable);
+    }
+
+    @Transactional
+    @Override
+    public Blog getAndConvert(Long id) {
+        Blog blog = blogRepository.getById(id);
+        if (blog == null) {
+            throw new NotFoundException("该博客不存在");
+        }
+        Blog b = new Blog();
+        BeanUtils.copyProperties(blog,b);
+        String content = b.getContent();
+        b.setContent(MarkdownUtils.markdownToHtmlExtensions(content));
+        blogRepository.updateViews(id);
+        return b;
     }
 }
