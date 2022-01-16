@@ -11,6 +11,9 @@
     <groupId>com.yyy.blog</groupId>
     <artifactId>blog-server</artifactId>
     <version>1.0.0</version>
+
+    <packaging>war</packaging>
+
     <name>blog-server</name>
     <description>Demo project for Spring Boot</description>
     <properties>
