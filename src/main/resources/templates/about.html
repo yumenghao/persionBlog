@@ -37,7 +37,7 @@
             <div class="ui stackable grid">
                 <div class="eleven wide column">
                     <div class="ui segment">
-                        <img src="https://picsum.photos/id/1005/650/600">
+                        <img src="../static/images/AboutMe.jpg" th:src="@{/images/AboutMe.jpg}" style="width: 500px; height: 600px">
                     </div>
                 </div>
                 <div class="five wide column">
@@ -45,8 +45,8 @@
                         <div class="ui header">关于我</div>
                     </div>
                     <div class="ui attached segment">
-                        <p class="m-text">YYY,后端工程师，精通java语言，MySQL数据库，ssm框架，以及spring boot集成技术</p>
-                        <p class="m-text">后端工程师，精通java语言，MySQL数据库，ssm框架，以及spring boot集成技术</p>
+                        <p class="m-text">于梦昊，西安邮电大学20级在校生，就读于本校计算机学院，计算机科学与技术系</p>
+                        <p class="m-text">学习方向为JAVA后端开发，此项目是本人学习Spring Boot后的第一次项目实战</p>
                     </div>
                     <div class="ui attached segment">
                         <div class="ui orange basic left pointing label">编程</div>
@@ -67,7 +67,7 @@
                         <a href="#" class="ui qq circular icon button" data-content="1214858237" data-position="bottom center"><i class="qq icon"></i></a>
                     </div>
                     <div class="ui wechat-QR flowing popup transition hidden">
-                        <img src="../static/images/wechat.jpg" class="ui rounded image" style="width: 110px">
+                        <img src="../static/images/wechat.jpg" th:src="@{/images/wechat.jpg}" class="ui rounded image" style="width: 110px">
                     </div>
                     </div>
             </div>
@@ -221,6 +221,9 @@
             draw_canvas();
         }, 100);
     }();
+</script>
+<script>
+    $('#newblog-container').load(/*[[@{/footer/newblog}]]*/"/footer/newblog");
 </script>
 <script>
     $('.menu.toggle').click(function () {

@@ -48,7 +48,7 @@
     <!--中间内容-->
     <div class="m-container-small m-padded-tb-big">
         <div class="ui container">
-            <form action="#" method="post" th:object="${type}" class="ui form" th:action="*{id}==0?@{/admin/types}:@{/admin/types/{id}(id=*{id})}">
+            <form action="#" method="post" th:object="${type}" class="ui form" th:action="*{id}==null ? @{/admin/types} : @{/admin/types/{id}(id=*{id})}">
                 <input type="hidden" name="id" th:value="*{id}">
                 <div class="required field">
                     <div class="ui left labeled input">
@@ -238,6 +238,9 @@
             draw_canvas();
         }, 100);
     }();
+</script>
+<script>
+    $('#newblog-container').load(/*[[@{/footer/newblog}]]*/"/footer/newblog");
 </script>
 <script>
 

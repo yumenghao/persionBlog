@@ -11,7 +11,7 @@ public class Type {
 
     @Id
     @GeneratedValue
-    private long id;
+    private Long id;//注意
 
     @NotBlank(message = "分类不能为空")
     private String name;
@@ -22,11 +22,11 @@ public class Type {
     public Type() {
     }
 
-    public long getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(long id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
